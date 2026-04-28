@@ -64,6 +64,15 @@ CANVAS_FORMATS = {
         'aspect_ratio': '4:3',
         'use_case': 'Traditional projectors'
     },
+    'ppt34': {
+        'name': 'PPT 3:4',
+        'dimensions': '768×1024',
+        'viewbox': '0 0 768 1024',
+        'width': 768,
+        'height': 1024,
+        'aspect_ratio': '3:4',
+        'use_case': 'Vertical presentations, mobile-first decks, portrait slides'
+    },
     'wechat': {
         'name': 'WeChat Article Header',
         'dimensions': '900×383',

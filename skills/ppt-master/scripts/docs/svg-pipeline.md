@@ -9,6 +9,7 @@ Run these steps in order:
 ```bash
 python3 scripts/total_md_split.py <project_path>
 python3 scripts/finalize_svg.py <project_path>
+python3 scripts/svg_to_jpg.py <project_path>
 python3 scripts/svg_to_pptx.py <project_path> -s final
 ```
 
@@ -23,6 +24,42 @@ It aggregates:
 - `embed_images.py`
 - `flatten_tspan.py`
 - `svg_rect_to_path.py`
+
+## `svg_to_jpg.py`
+
+Convert SVG files to JPG images with Chinese font support using Playwright browser rendering.
+
+```bash
+python3 scripts/svg_to_jpg.py <project_path>
+python3 scripts/svg_to_jpg.py <project_path> --quality 100
+python3 scripts/svg_to_jpg.py <project_path> --scale 3
+python3 scripts/svg_to_jpg.py <project_path> -s output
+```
+
+Behavior:
+- Reads SVG files from `svg_final/` (default) or `svg_output/` (with `-s output`)
+- Outputs JPG files to `svg_output_images/`
+- Uses Playwright browser rendering for high-quality conversion
+- Automatically detects and uses system fonts that support Chinese characters
+- Default: quality=100, scale=3x (ultra-high definition)
+
+Dependencies:
+```bash
+pip3 install playwright Pillow
+python3 -m playwright install chromium
+```
+
+Usage examples:
+```bash
+# Default ultra-high definition (quality=100, scale=3)
+python3 scripts/svg_to_jpg.py <project_path>
+
+# Lower quality for smaller file size
+python3 scripts/svg_to_jpg.py <project_path> --quality 95 --scale 2
+
+# Maximum quality
+python3 scripts/svg_to_jpg.py <project_path> --quality 100 --scale 4
+```
 
 ## `svg_to_pptx.py`
 

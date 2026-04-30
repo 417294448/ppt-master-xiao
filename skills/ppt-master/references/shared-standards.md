@@ -278,7 +278,7 @@ Wrap logically related elements in `<g>`. Produces PowerPoint groups in PPTX, ma
 
 ---
 
-## 5. Post-processing Pipeline (3 Steps)
+## 5. Post-processing Pipeline (4 Steps)
 
 Must be executed in order — skipping or adding extra flags is FORBIDDEN:
 
@@ -289,7 +289,11 @@ python3 scripts/total_md_split.py <project_path>
 # 2. SVG post-processing (icon embedding, image crop/embed, text flattening, rounded rect to path)
 python3 scripts/finalize_svg.py <project_path>
 
-# 3. Export PPTX (from svg_final/, embeds speaker notes by default)
+# 3. Convert SVG to JPG (supports Chinese fonts)
+python3 scripts/svg_to_jpg.py <project_path>
+# Output: svg_output_images/*.jpg
+
+# 4. Export PPTX (from svg_final/, embeds speaker notes by default)
 python3 scripts/svg_to_pptx.py <project_path> -s final
 # Output: exports/<project_name>_<timestamp>.pptx + exports/<project_name>_<timestamp>_svg.pptx
 ```
@@ -299,7 +303,7 @@ python3 scripts/svg_to_pptx.py <project_path> -s final
 - NEVER export directly from `svg_output/` — MUST export from `svg_final/` (use `-s final`)
 - NEVER add extra flags like `--only`
 
-**Re-run rule**: Any change to `svg_output/` after post-processing requires re-running Steps 2-3. Step 1 only re-runs if `notes/total.md` changed.
+**Re-run rule**: Any change to `svg_output/` after post-processing requires re-running Steps 2-4. Step 1 only re-runs if `notes/total.md` changed.
 
 ---
 
@@ -686,8 +690,9 @@ Back2: (370-8.1+3.7, 430-8.8-3.4) = (365.6, 417.8)
 
 ```
 project/
-├── svg_output/    # Raw SVGs (Executor output, contains placeholders)
-├── svg_final/     # Post-processed final SVGs (finalize_svg.py output)
+├── svg_output/         # Raw SVGs (Executor output, contains placeholders)
+├── svg_final/          # Post-processed final SVGs (finalize_svg.py output)
+├── svg_output_images/  # JPG images (svg_to_jpg.py output, for preview/sharing)
 ├── images/        # Image assets (user-provided + AI-generated)
 ├── notes/         # Speaker notes (.md files matching SVG names)
 │   └── total.md   # Complete speaker notes document (before splitting)

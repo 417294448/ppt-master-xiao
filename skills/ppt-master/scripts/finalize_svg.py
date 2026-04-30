@@ -246,6 +246,7 @@ def finalize_project(
         safe_print("[OK] Done!")
         print()
         print("Next steps:")
+        print(f"  python scripts/svg_to_jpg.py \"{project_dir}\"")
         print(f"  python scripts/svg_to_pptx.py \"{project_dir}\" -s final")
 
     return True

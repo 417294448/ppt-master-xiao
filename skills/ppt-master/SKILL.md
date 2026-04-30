@@ -281,10 +281,10 @@ python3 ${SKILL_DIR}/scripts/svg_quality_checker.py <project_path>
 
 🚧 **GATE**: Step 6 complete; all SVGs generated to `svg_output/`; speaker notes `notes/total.md` generated.
 
-> ⚠️ Run the three sub-steps **one at a time** — each must complete successfully before the next.
+> ⚠️ Run the four sub-steps **one at a time** — each must complete successfully before the next.
 > ❌ **NEVER** combine them into a single code block or shell invocation.
 
-Canonical three-command pipeline (mirrors `references/shared-standards.md` §5):
+Canonical four-command pipeline (mirrors `references/shared-standards.md` §5):
 
 **Step 7.1** — Split speaker notes:
 ```bash
@@ -296,7 +296,17 @@ python3 ${SKILL_DIR}/scripts/total_md_split.py <project_path>
 python3 ${SKILL_DIR}/scripts/finalize_svg.py <project_path>
 ```
 
-**Step 7.3** — Export PPTX (embeds speaker notes by default):
+**Step 7.3** — Convert SVG to JPG (supports Chinese fonts):
+```bash
+python3 ${SKILL_DIR}/scripts/svg_to_jpg.py <project_path>
+# Output: svg_output_images/*.jpg
+```
+
+> This step converts all SVG files in `svg_final/` to JPG images with Chinese font support.
+> It tries multiple conversion methods in order: Inkscape → rsvg-convert → CairoSVG → svglib
+> The generated JPG files are saved to `svg_output_images/` folder for preview, sharing, or other purposes.
+
+**Step 7.4** — Export PPTX (embeds speaker notes by default):
 ```bash
 python3 ${SKILL_DIR}/scripts/svg_to_pptx.py <project_path> -s final
 # Output: exports/<project_name>_<timestamp>.pptx + exports/<project_name>_<timestamp>_svg.pptx

@@ -310,10 +310,14 @@ Auto-split `notes/total.md` into per-page files in `notes/`.
 # 1. Split speaker notes
 python3 scripts/total_md_split.py <project_path>
 
-# 2. SVG post-processing (auto-embed icons, images, etc.)
+# 2. SVG post-processing (icon embedding, image crop/embed, text flattening, rounded rect to path)
 python3 scripts/finalize_svg.py <project_path>
 
-# 3. Export PPTX
+# 3. Convert SVG to JPG (supports Chinese fonts)
+python3 scripts/svg_to_jpg.py <project_path>
+# Output: svg_output_images/*.jpg
+
+# 4. Export PPTX (from svg_final/, embeds speaker notes by default)
 python3 scripts/svg_to_pptx.py <project_path> -s final
 # Output: exports/<project_name>_<timestamp>.pptx + exports/<project_name>_<timestamp>_svg.pptx
 ```

@@ -76,6 +76,9 @@ For complete tool documentation, see `${SKILL_DIR}/scripts/README.md`.
 |----------|------|---------|
 | `create-template` | `workflows/create-template.md` | Standalone template creation workflow |
 | `verify-charts` | `workflows/verify-charts.md` | Chart coordinate calibration — run after SVG generation if the deck contains data charts |
+| `research-topic` | `workflows/research-topic.md` | Research a topic from scratch when the user provides only a brief description or requirements without detailed source materials. Produces a structured Markdown document and a folder of related images. |
+
+
 
 ---
 

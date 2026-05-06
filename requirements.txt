@@ -91,6 +91,19 @@ beautifulsoup4>=4.12.0
 curl_cffi>=0.7.0
 
 # ─────────────────────────────────────────────────────────────
+# SVG to JPG tool / SVG 转 JPG 工具 (skills/ppt-master/scripts/svg_to_jpg.py)
+# ─────────────────────────────────────────────────────────────
+# Converts SVG files to JPG images with Chinese font support using Playwright browser rendering.
+# 使用 Playwright 浏览器渲染将 SVG 转换为 JPG 图片，支持中文字体
+# Required after finalize_svg.py and before svg_to_pptx.py in the post-processing pipeline.
+# 在后处理流水线中位于 finalize_svg.py 之后、svg_to_pptx.py 之前。
+#
+# Install / 安装方式：
+#   pip install playwright
+#   python -m playwright install chromium
+playwright>=1.40.0
+
+# ─────────────────────────────────────────────────────────────
 # AI image generation tool / AI 图片生成工具 (skills/ppt-master/scripts/image_gen.py)
 # ─────────────────────────────────────────────────────────────
 # Gemini backend / Gemini 后端 (IMAGE_BACKEND=gemini)
